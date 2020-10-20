@@ -4,11 +4,10 @@ import {
   Container,
   Inner,
   Title,
-  Frame,
   Item,
   Header,
   Body,
-} from './styles/accordion';
+} from './styles/Accordion';
 
 const ToggleContext = createContext();
 
@@ -21,11 +20,7 @@ export default function Accordion({ children, ...restProps }) {
 }
 
 Accordion.Title = function AccordionTitle({ children, ...restProps }) {
-  return <Title {...restProps}>{children}</Title>;
-};
-
-Accordion.Frame = function AccordionFrame({ children, ...restProps }) {
-  return <Frame {...restProps}>{children}</Frame>;
+  return <Title {...restProps}>{children}</Title>
 };
 
 Accordion.Item = function AccordionItem({ children, ...restProps }) {
@@ -33,7 +28,7 @@ Accordion.Item = function AccordionItem({ children, ...restProps }) {
 
   return (
     <ToggleContext.Provider value={{ toggleShow, setToggleShow }}>
-      <Item {...restProps}>{children}</Item>;
+      <Item {...restProps}>{children}</Item>
     </ToggleContext.Provider>
   );
 };
@@ -43,6 +38,11 @@ Accordion.Header = function AccordionHeader({ children, ...restProps }) {
   return (
     <Header onClick={() => setToggleShow(!toggleShow)} {...restProps}>
       {children}
+      {toggleShow ? (
+        <img src="/images/icons/close-slim.png" alt="Close" />
+      ) : (
+        <img src="/images/icons/add.png" alt="Open" />
+      )}
     </Header>
   );
 };
