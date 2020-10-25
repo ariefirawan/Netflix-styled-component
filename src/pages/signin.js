@@ -11,16 +11,17 @@ import * as ROUTES from '../constants/route';
 export default function SignIn() {
   const history = useHistory();
   const { firebase } = useContext(FirebaseContext);
+
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState('dasdsad');
+  const [error, setError] = useState('');
 
   const isInvalid = password === '' || email === '';
 
   const handleSignin = (e) => {
     e.preventDefault();
 
-    firebase
+    return firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
@@ -47,7 +48,7 @@ export default function SignIn() {
             />
             <Form.Input
               placeholder="Password"
-              type="passowrd"
+              type="password"
               autoComplete="off"
               value={password}
               onChange={({ target }) => setPassword(target.value)}
