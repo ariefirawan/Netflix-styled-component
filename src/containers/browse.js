@@ -8,6 +8,7 @@ import { FirebaseContext } from '../context/firebase';
 
 export default function BrowseContainer({ slides }) {
   const [profile, setProfile] = useState({});
+  const [searchItem, setSearchItem] = useState('');
   const [loading, setLoading] = useState(true);
   const { firebase } = useContext(FirebaseContext);
   const user = firebase.auth().currentUser || {};
@@ -29,6 +30,10 @@ export default function BrowseContainer({ slides }) {
             <Header.TextLink>series</Header.TextLink>
           </Header.Group>
           <Header.Group>
+            <Header.Search
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
+            />
             <Header.Profile>
               <Header.Picture src={user.photoURL} />
               <Header.Dropdown>
