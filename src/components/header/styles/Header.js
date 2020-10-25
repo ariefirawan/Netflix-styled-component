@@ -102,7 +102,7 @@ export const TextLink = styled.p`
     font-weight: bold;
   }
 
-  &:list-of-type {
+  &:last-of-type {
     margin-right: 0;
   }
 `;
