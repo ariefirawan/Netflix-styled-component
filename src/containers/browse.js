@@ -1,8 +1,9 @@
 import React, { useState, useContext, useEffect } from 'react';
+import Fuse from 'fuse.js';
 
 import * as ROUTES from '../constants/route';
 import logo from '../logo.svg';
-import { Header, Loading, Card } from '../components';
+import { Header, Loading, Card, Player } from '../components';
 import { FooterContainer } from './footer';
 import SelectProfileContainer from './profile';
 import { FirebaseContext } from '../context/firebase';
@@ -26,6 +27,8 @@ export default function BrowseContainer({ slides }) {
   useEffect(() => {
     setSlideRows(slides[category]);
   }, [slides, category]);
+
+  
 
   return profile.displayName ? (
     <>
@@ -99,7 +102,10 @@ export default function BrowseContainer({ slides }) {
               ))}
             </Card.Entities>
             <Card.Feature category={category}>
-              <p>gg</p>
+              <Player>
+                <Player.Button />
+                <Player.Video src="/videos/bunny.mp4" />
+              </Player>
             </Card.Feature>
           </Card>
         ))}
