@@ -3,14 +3,15 @@ import React, { useState, useContext, useEffect } from 'react';
 import * as ROUTES from '../constants/route';
 import logo from '../logo.svg';
 import { Header, Loading, Card } from '../components';
+import { FooterContainer } from './footer';
 import SelectProfileContainer from './profile';
 import { FirebaseContext } from '../context/firebase';
 
 export default function BrowseContainer({ slides }) {
   const [category, setCategory] = useState('series');
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState({ displayName: 'gg' });
   const [searchItem, setSearchItem] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [slideRows, setSlideRows] = useState([]);
 
   const { firebase } = useContext(FirebaseContext);
@@ -103,6 +104,7 @@ export default function BrowseContainer({ slides }) {
           </Card>
         ))}
       </Card.Group>
+      <FooterContainer />
     </>
   ) : (
     <SelectProfileContainer user={user} setProfile={setProfile} />
